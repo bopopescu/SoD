@@ -92,8 +92,8 @@ def not_equal(*values):
 def select_db_reader_mode(f):
     """Decorator to select synchronous or asynchronous reader mode.
 
-    The kwarg argument 'use_slave' defines reader mode. Asynchronous reader
-    will be used if 'use_slave' is True and synchronous reader otherwise.
+    The kwarg argument 'use_subordinate' defines reader mode. Asynchronous reader
+    will be used if 'use_subordinate' is True and synchronous reader otherwise.
     """
     return IMPL.select_db_reader_mode(f)
 
@@ -224,7 +224,7 @@ def compute_node_get_all(context):
     return IMPL.compute_node_get_all(context)
 
 
-def compute_node_get_all_by_host(context, host, use_slave=False):
+def compute_node_get_all_by_host(context, host, use_subordinate=False):
     """Get compute nodes by host name
 
     :param context: The security context (admin)
@@ -232,7 +232,7 @@ def compute_node_get_all_by_host(context, host, use_slave=False):
 
     :returns: List of dictionaries each containing compute node properties
     """
-    return IMPL.compute_node_get_all_by_host(context, host, use_slave)
+    return IMPL.compute_node_get_all_by_host(context, host, use_subordinate)
 
 
 def compute_node_search_by_hypervisor(context, hypervisor_match):
@@ -1645,16 +1645,16 @@ def agent_build_update(context, agent_build_id, values):
 ####################
 
 
-def bw_usage_get(context, uuid, start_period, mac, use_slave=False):
+def bw_usage_get(context, uuid, start_period, mac, use_subordinate=False):
     """Return bw usage for instance and mac in a given audit period."""
     return IMPL.bw_usage_get(context, uuid, start_period, mac,
-                             use_slave=use_slave)
+                             use_subordinate=use_subordinate)
 
 
-def bw_usage_get_by_uuids(context, uuids, start_period, use_slave=False):
+def bw_usage_get_by_uuids(context, uuids, start_period, use_subordinate=False):
     """Return bw usages for instance(s) in a given audit period."""
     return IMPL.bw_usage_get_by_uuids(context, uuids, start_period,
-                                      use_slave=use_slave)
+                                      use_subordinate=use_subordinate)
 
 
 def bw_usage_update(context, uuid, mac, start_period, bw_in, bw_out,

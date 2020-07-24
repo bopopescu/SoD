@@ -2107,7 +2107,7 @@ class _ComputeAPIUnitTestMixIn(object):
             instance.system_metadata['image_os_require_quiesce'] = 'yes'
             expect_meta['properties']['os_require_quiesce'] = 'yes'
 
-        def fake_get_all_by_instance(context, instance, use_slave=False):
+        def fake_get_all_by_instance(context, instance, use_subordinate=False):
             return copy.deepcopy(instance_bdms)
 
         def fake_image_create(context, image_meta, data=None):
